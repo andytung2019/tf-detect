@@ -3,6 +3,7 @@
 # Copyright (c) 2015 Microsoft
 # Licensed under The MIT License [see LICENSE for details]
 # Written by Ross Girshick
+# add my own dataset: carcar_voc by Andy.Tung 2018.7
 # --------------------------------------------------------
 
 """Factory method for easily getting imdbs by name."""
@@ -12,9 +13,18 @@ from __future__ import print_function
 
 __sets = {}
 from datasets.pascal_voc import pascal_voc
+from datasets.carcar_voc import carcar_voc
 from datasets.coco import coco
 
 import numpy as np
+
+# Set up voc_<year>_<split>
+#added by andy.tung 2018.7 new dataset for car detection
+for year in ['2018']:
+  for split in ['train','val', 'trainval', 'test']:
+    name = 'carcar_{}_{}'.format(year, split)
+    __sets[name] = (lambda split=split, year=year: carcar_voc(split, year))
+
 
 # Set up voc_<year>_<split> 
 for year in ['2007', '2012']:
