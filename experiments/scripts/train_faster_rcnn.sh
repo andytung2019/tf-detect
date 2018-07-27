@@ -15,6 +15,16 @@ EXTRA_ARGS=${array[@]:3:$len}
 EXTRA_ARGS_SLUG=${EXTRA_ARGS// /_}
 
 case ${DATASET} in
+
+  carcar_voc)
+    TRAIN_IMDB="carcar_2018_trainval"
+    TEST_IMDB="carcar_2018_test"
+    STEPSIZE="[10000]"
+    ITERS=20000
+    ANCHORS="[8,16,32]"
+    RATIOS="[0.5,1,2]"
+    ;;
+
   pascal_voc)
     TRAIN_IMDB="voc_2007_trainval"
     TEST_IMDB="voc_2007_test"
@@ -46,8 +56,6 @@ case ${DATASET} in
 esac
 
 LOG="experiments/logs/${NET}_${TRAIN_IMDB}_${EXTRA_ARGS_SLUG}_${NET}.txt.`date +'%Y-%m-%d_%H-%M-%S'`"
-exec &> >(tee -a "$LOG")
-echo Logging output to "$LOG"
 
 set +x
 if [[ ! -z  ${EXTRA_ARGS_SLUG}  ]]; then
