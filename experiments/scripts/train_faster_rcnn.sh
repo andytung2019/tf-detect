@@ -19,8 +19,8 @@ case ${DATASET} in
   carcar_voc)
     TRAIN_IMDB="carcar_2018_trainval"
     TEST_IMDB="carcar_2018_test"
-    STEPSIZE="[10000]"
-    ITERS=20000
+    STEPSIZE="[1000]"
+    ITERS=5000
     ANCHORS="[8,16,32]"
     RATIOS="[0.5,1,2]"
     ;;
